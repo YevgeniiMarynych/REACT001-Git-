@@ -24,6 +24,15 @@ loadSampleBurgers = () => {
     this.setState({burgers: sampleBurgers})
 }
 
+addToOrder = key => {
+    // 1 Делаем копию обьекта state
+    const order = {... this.state.order}
+    // 2 Добавить ключ к заказу со значением 1, либо обновить текущее значение
+    order[key] = order[key] + 1 || 1;
+    //3 Записать наш новый обьект order  в state
+   this.setState({order})
+}
+
 
     render() {
         return(
@@ -36,6 +45,7 @@ loadSampleBurgers = () => {
                         <Burger 
                         key={key} 
                         index={key}
+                        addToOrder={this.addToOrder}
                         details={this.state.burgers[key]}
                         />
                         )
